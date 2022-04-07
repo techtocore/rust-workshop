@@ -27,6 +27,23 @@ impl MainState {
         if self.ball.bottom() >= screen_height() || self.ball.top() <= 0.0 {
             self.y_vel *= -1.0;
         }
+
+        if self.ball.overlaps(&self.top_paddle) || self.ball.overlaps(&self.bottom_paddle) {
+            self.y_vel *= -1.0;
+        }
+
+        if is_key_down(KeyCode::Left) && self.bottom_paddle.x >= 0.0 {
+            self.bottom_paddle.x -= 10.0
+        }
+        if is_key_down(KeyCode::Right) && self.bottom_paddle.x <= (screen_width() - 120.0) {
+            self.bottom_paddle.x += 10.0
+        }
+        if is_key_down(KeyCode::A) && self.top_paddle.x >= 0.0 {
+            self.top_paddle.x -= 10.0
+        }
+        if is_key_down(KeyCode::D) && self.top_paddle.x <= (screen_width() - 120.0) {
+            self.top_paddle.x += 10.0
+        }
     }
 }
 
