@@ -19,9 +19,9 @@ impl MainState {
         draw_rectangle(self.bottom_paddle.x, self.bottom_paddle.y, self.bottom_paddle.w, self.bottom_paddle.h, BLUE);
 
         let t1: String = format!("{}{}", "Red Score: ", &self.top_score.to_string());
-        draw_text(&t1.to_owned(), screen_width() - 100.0, 40.0, 10.0, WHITE);
+        draw_text(&t1.to_owned(), screen_width() - 120.0, 50.0, 10.0, WHITE);
         let t2: String = format!("{}{}", "Blue Score: ", &self.bottom_score.to_string());
-        draw_text(&t2.to_owned(), screen_width() - 100.0, 60.0, 10.0, WHITE);
+        draw_text(&t2.to_owned(), screen_width() - 120.0, 70.0, 10.0, WHITE);
     }
 
     fn update(&mut self) {
@@ -32,11 +32,11 @@ impl MainState {
         if self.ball.right() >= screen_width() || self.ball.left() <= 0.0 {
             self.x_vel *= -1.0;
         }
-        if self.ball.bottom() >= screen_height() {
+        if self.ball.bottom() >= (screen_height() - 15.0) {
             self.y_vel *= -1.0;
             self.top_score += 1;
         }
-        if self.ball.top() <= 0.0 {
+        if self.ball.top() <= 15.0 {
             self.y_vel *= -1.0;
             self.bottom_score += 1;
         }
